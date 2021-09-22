@@ -1,0 +1,16 @@
+tim () {
+    
+    FILE=$1 
+    
+    if [[ -f $FILE || -d $FILE ]]; then 
+        open -a "Sublime Text.app" $1
+    elif [ $# -eq 0 ]; then
+        echo "please pass in a new file name to create a new file or an existing file/directory to open in sublime" 
+    else
+        echo "Creating file: $1"  
+        touch $1
+        open -a "Sublime Text.app" $1
+    fi
+}
+
+tim

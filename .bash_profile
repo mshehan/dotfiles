@@ -6,3 +6,7 @@ function start_up() {
 
 start_up; 
 
+
+export PATH="$HOME/.poetry/bin:$PATH"
+alias startcambly="cd ~/cambly/Cambly-Backend && heroku local -f Procfile.local"
+

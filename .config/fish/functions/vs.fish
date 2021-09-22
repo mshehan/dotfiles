@@ -1,4 +1,4 @@
-function xim
+function vs
 	if test -e $argv
 		open -a "Visual Studio Code.app" $argv
 	else 
