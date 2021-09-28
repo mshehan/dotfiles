@@ -12,5 +12,3 @@ xim () {
         open -a "XCode.app" $1
     fi
 }
-
-tim

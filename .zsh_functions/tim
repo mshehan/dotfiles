@@ -12,5 +12,3 @@ tim () {
         open -a "Sublime Text.app" $1
     fi
 }
-
-tim

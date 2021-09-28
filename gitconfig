@@ -28,6 +28,7 @@
     trim = !git reflog expire --expire=now --all && git gc --prune=now
     fa = fetch --all
     f = fetch 
+    fpush = push --force-with-lease
 
 [credential]
     helper = osxkeychain
@@ -62,4 +63,9 @@
 
 [merge]
     log = true
-#testjk
+
+[include]
+    path = ~/gitconfig
+[user]
+	name = Matthew Shehan
+	email = matt@cambly.com

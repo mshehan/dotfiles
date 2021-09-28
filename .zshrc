@@ -1,9 +1,30 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+#adds poetry to PATH variable
+export PATH="$HOME/.poetry/bin:$PATH"
+
+# initializes pyenv 
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+if which pyenv-virtualenv-init > /dev/null; then
+  eval "$(pyenv virtualenv-init -)"
+fi
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
+eval "$(pyenv init -)"
+
+
 #adding a function path for my zsh defined functions
 fpath=(~/dotfiles/.zsh_functions $fpath);
 autoload -U $fpath[1]/*(.:t)
+
+#option to include hidden files
+setopt globdots
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/matthewshehan/.oh-my-zsh"
@@ -74,7 +95,13 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+	git
+	zsh-autosuggestions
+	web-search
+	copydir
+	zsh_reload
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,3 +131,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="ls -ACG"
+alias startcambly="cd ~/cambly/Cambly-Backend && heroku local -f Procfile.local"
+alias startngrok="ngrok http -subdomain=matthewcambly 5000" 
+alias zshedit="tim ~/.zshrc"
+alias cleardata="rm -rf ~/Library/Developer/Xcode/DerivedData/"
