@@ -29,9 +29,13 @@
     fa = fetch --all
     f = fetch 
     fpush = push --force-with-lease
+    cleanup = !git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 -r git branch -d
+    recent = !git branch --sort=-committerdate | head -5
 
 [credential]
     helper = osxkeychain
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager-core
 
 [color]
     ui = true
@@ -55,7 +59,7 @@
 [core]
     autocrlf = input
     compression = 9
-    excludesfile = ~/.gitignore_global
+	excludesfile = /Users/matthewshehan/.gitignore_global
     filemode = false
 
 [diff]
@@ -66,11 +70,16 @@
 
 [include]
     path = ~/gitconfig
+
 [user]
 	name = Matthew Shehan
 	email = matt@cambly.com
+
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+
+[push]
+	default = current

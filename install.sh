@@ -6,12 +6,14 @@ function install() {
   rm -r ~/.config
   rm -r ~/.vimrc
   rm -r ~/.zshrc
+  rm -r ~/.gitconfig
   
   ln -s ~/dotfiles/.vim ~/.vim
   ln -s ~/dotfiles/.bash_profile ~/.bash_profile
   ln -s ~/dotfiles/.config ~/.config
   ln -s ~/dotfiles/.vimrc ~/.vimrc
   ln -s ~/dotfiles/.zshrc ~/.zshrc
+  ln -s ~/dotfiles/gitconfig ~/.gitconfig
   
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   vim +PluginInstall +qall
