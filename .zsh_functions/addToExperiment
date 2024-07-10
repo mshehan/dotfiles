@@ -1,6 +1,0 @@
-addToExperiment() {
-
-	cd ~/cambly/Cambly-Backend;
-	
-	poetry run python -m scripts oneoff.assign_user_to_experiment --user  $1 --args name=$2,group=exp1
-}

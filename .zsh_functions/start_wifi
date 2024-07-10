@@ -1,0 +1,9 @@
+start_wifi() {
+	##
+	## Script taken from Meter https://www.meter.com/mac-osx-awdl-psa
+	##
+	sudo cp ~/Desktop/awdl-fix-scripts/com.meter.wifi.awdl.plist /Library/LaunchDaemons/com.meter.wifi.awdl.plist
+	sudo launchctl unload -w /Library/LaunchDaemons/com.meter.wifi.awdl.plist >/dev/null 2>&1 || true 
+	sudo launchctl load -w /Library/LaunchDaemons/com.meter.wifi.awdl.plist	
+}
+

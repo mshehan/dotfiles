@@ -1,0 +1,7 @@
+add_validators() {
+	cd ~/cambly/Cambly-Backend
+	
+	poetry run python -m scripts mongo_index_tool --- drop-extra ALL --commit
+	poetry run python -m scripts mongo_index_tool --- add-missing ALL --commit
+	poetry run python -m scripts add_all_validators
+}

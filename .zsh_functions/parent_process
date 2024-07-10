@@ -1,0 +1,3 @@
+parent_process() {
+	ps -o ppid= -p $1 | ps
+}
