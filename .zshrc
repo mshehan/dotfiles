@@ -18,10 +18,17 @@ export LDFLAGS="-L$(brew --prefix bzip2)/lib $LDFLAGS"
 export CPPFLAGS="-I$(brew --prefix libffi)/include $CPPFLAGS"
 export LDFLAGS="-L$(brew --prefix libffi)/lib $LDFLAGS"
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# Update this if updating mongo version!
+export PATH=$PATH:/opt/homebrew/Cellar/mongodb-community/7.0.8/bin
+export PATH=$PATH:/opt/homebrew/Cellar/mongodb-database-tools/100.9.4/bin
+
 #adds poetry to PATH variable
 export PATH="$PATH:$HOME/.local/bin/"
-
-export PATH="$PATH:/opt/homebrew/Cellar/mongodb-community@4.4/4.4.13/bin"
 
 # initializes pyenv 
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -38,10 +45,7 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
 # vault setup
-export VAULT_ADDR="https://vault-cluster-cambly1.private.vault.f705d0e3-6ca4-450e-82b3-0a83f1725cd3.aws.hashicorp.cloud:8200"
-export VAULT_NAMESPACE="admin"
-# my github personal access token
-export VAULT_GITHUB_TOKEN="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"
+
 
 #adding a function path for my zsh defined functions
 fpath=(~/dotfiles/.zsh_functions $fpath);
@@ -154,23 +158,21 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="ls -ACG"
-alias startcambly="cd ~/cambly/Cambly-Backend && vaultssh && heroku local -f Procfile.local -e .env-vault-dev"
 alias startngrok="ngrok http --subdomain=matthewcambly 8080" 
 alias zshedit="tim ~/.zshrc"
 alias cleardata="rm -rf ~/Library/Developer/Xcode/DerivedData/"
 alias reload="omz reload"
 alias booturl="xcrun simctl openurl booted"
 alias project_update="sh ~/cambly/Cambly-Swift/project_update.sh"
-alias update="sh ~/cambly/Cambly-Swift/update.sh"
 
 # vault aliases
 alias vaultssh="pkill -f 'ssh.*vault';ssh -i ~/.aws/hcp-vault-ssh-tunnel-01.pem -f -q -N -L 8200:vault-cluster-cambly1.private.vault.f705d0e3-6ca4-450e-82b3-0a83f1725cd3.aws.hashicorp.cloud:8200 ubuntu@52.87.236.223"
 alias psvaultssh="ps aux | grep 'ssh.*vault' | grep -v grep"
 alias killvaultssh="pkill -f 'ssh.*vault'"
-alias killbe="pkill -9 node; pkill -9 python; pkill -9 ngnix"
+alias add_indexes="poetry run python -m scripts mongo_index_tool --- add-missing ALL --commit"
+alias add_validators="poetry run python -m scripts add_all_validators"
 
 eval "$(starship init zsh)"
 eval "$(rbenv init -)"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#Load in cambly helper functions 
+source ~/cambly/Cambly-Backend/scripts/cambly_commands.sh
