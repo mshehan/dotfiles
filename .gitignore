@@ -3,3 +3,5 @@
 .config/AWSVPNClient/
 *DS_Store
 
+.config/.DS_Store
+.DS_Store
