@@ -4,10 +4,13 @@ function install_brew_if_needed() {
   then 
     echo "brew not found. starting download..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew bundle install --file=~/dotfiles/Brewfile
   else
     echo "brew found. skipping brewfile install"
   fi
+}
+
+function install_oh_my_zsh_if_needed() {
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
 function link_dot_file_to_main_dir() {
@@ -43,6 +46,9 @@ function link_config_files() {
 function main() {
   install_brew_if_needed;
   link_config_files;
+  source ~/.zshrc;
+  brew bundle install --file=~/dotfiles/Brewfile;
+  install_oh_my_zsh_if_needed;
 }
 
 main;
