@@ -163,16 +163,3 @@ alias zshedit="tim ~/.zshrc"
 alias cleardata="rm -rf ~/Library/Developer/Xcode/DerivedData/"
 alias reload="omz reload"
 alias booturl="xcrun simctl openurl booted"
-alias project_update="sh ~/cambly/Cambly-Swift/project_update.sh"
-
-# vault aliases
-alias vaultssh="pkill -f 'ssh.*vault';ssh -i ~/.aws/hcp-vault-ssh-tunnel-01.pem -f -q -N -L 8200:vault-cluster-cambly1.private.vault.f705d0e3-6ca4-450e-82b3-0a83f1725cd3.aws.hashicorp.cloud:8200 ubuntu@52.87.236.223"
-alias psvaultssh="ps aux | grep 'ssh.*vault' | grep -v grep"
-alias killvaultssh="pkill -f 'ssh.*vault'"
-alias add_indexes="poetry run python -m scripts mongo_index_tool --- add-missing ALL --commit"
-alias add_validators="poetry run python -m scripts add_all_validators"
-
-eval "$(starship init zsh)"
-eval "$(rbenv init -)"
-#Load in cambly helper functions 
-source ~/cambly/Cambly-Backend/scripts/cambly_commands.sh
