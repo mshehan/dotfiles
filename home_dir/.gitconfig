@@ -68,7 +68,7 @@
 
 [user]
 	name = Matthew Shehan
-	email = matthshehan@envoy.com
+	email = mattshehan@envoy.com
 
 [filter "lfs"]
 	required = true
