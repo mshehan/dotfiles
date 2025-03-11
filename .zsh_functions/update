@@ -1,4 +1,0 @@
-update() {
-	cd ~/cambly/Cambly-Swift
-	sh ./update.sh
-}

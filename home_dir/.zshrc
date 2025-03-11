@@ -2,6 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+
 export CPPFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
 export LDFLAGS="-L$(xcrun --show-sdk-path)/usr/lib"
 
@@ -21,11 +22,6 @@ export LDFLAGS="-L$(brew --prefix libffi)/lib $LDFLAGS"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-# Update this if updating mongo version!
-export PATH=$PATH:/opt/homebrew/Cellar/mongodb-community/7.0.8/bin
-export PATH=$PATH:/opt/homebrew/Cellar/mongodb-database-tools/100.9.4/bin
 
 #adds poetry to PATH variable
 export PATH="$PATH:$HOME/.local/bin/"
@@ -48,20 +44,23 @@ eval "$(pyenv init -)"
 
 
 #adding a function path for my zsh defined functions
-fpath=(~/dotfiles/.zsh_functions $fpath);
+fpath=(~/dotfiles/home_dir/.zsh_functions $fpath);
 autoload -U $fpath[1]/*(.:t)
 
 #option to include hidden files
 setopt globdots
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/matthewshehan/.oh-my-zsh"
+export ZSH="$HOME/dotfiles/home_dir/oh-my-zsh"
+
+#path to brewfile 
+export HOMEBREW_BUNDLE_FILE=$HOME/dotfiles/CONFIG_FILES/Brewfile
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -95,12 +94,12 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
 # See https://github.com/ohmyzsh/ohmyzsh/issues/5765
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -113,7 +112,7 @@ ZSH_THEME="robbyrussell"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="%F %T"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -125,12 +124,12 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
-	zsh-autosuggestions
 	web-search
-	zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
 
@@ -158,7 +157,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="ls -ACG"
-alias startngrok="ngrok http --subdomain=matthewcambly 8080" 
 alias zshedit="tim ~/.zshrc"
 alias cleardata="rm -rf ~/Library/Developer/Xcode/DerivedData/"
 alias reload="omz reload"
