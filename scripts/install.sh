@@ -16,27 +16,30 @@ function install_brew_if_needed() {
 }
 
 function install_oh_my_zsh_if_needed() {
-  chmod +x ./install_ohmyzsh.sh
-
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattendedrm 
+  if [ ! -d  $ZSH ] || [ ! -f $ZSH ]
+  then 
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
+  else
+    echo "oh-my-zsh already installed at ${ZSH}"
+  fi 
 }
 
 function link_dot_file_to_main_dir() {
   local main_dir=$HOME/${1##*/}
-  local dotfile_dir=$HOME/dotfiles/$1
+  local dotfile_dir=$1
 
   if [ ! -d $dotfile_dir ] || [ ! -f $dotfile_dir ]
   then 
     echo -e "${GREEN}creating soft link from${RESET}"
     printf "%-10s %s %-10s\n\n" "${dotfile_dir}" "${RIGHT_ARROW}" "${main_dir}"
-    #ln -s $dotfile_dir $main_dir
+    ln -sf $dotfile_dir $main_dir
   fi 
 }
 
 function remove_soft_links() {
   local main_dir=$HOME/${1##*/}
 
-  if [ -d "$main_dir" ] || [ -f "$main_dir" ]
+  if [ -d $main_dir ] || [ -f $main_dir ]
   then 
     echo -e "${RED}removing${RESET} ${main_dir}"
     rm -r $main_dir
@@ -66,6 +69,7 @@ function main() {
   source $HOME/.zshrc;
   brew bundle install;
   install_oh_my_zsh_if_needed;
+  omz reload; 
 }
 
 main;
