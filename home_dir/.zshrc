@@ -20,11 +20,16 @@ export CPPFLAGS="-I$(brew --prefix libffi)/include $CPPFLAGS"
 export LDFLAGS="-L$(brew --prefix libffi)/lib $LDFLAGS"
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+NVM_BREW_DIR="$(brew --prefix nvm)"
+
+[ -s "$NVM_BREW_DIR" ] && \. "${NVM_BREW_DIR}/nvm.sh"  # This loads nvm
+[ -s "${NVM_BREW_DIR}/etc/bash_completion.d/nvm" ] && \. "${NVM_BREW_DIR}/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 #adds poetry to PATH variable
 export PATH="$PATH:$HOME/.local/bin/"
+
+#initialize rbenv
+eval "$(rbenv init - --no-rehash zsh)"
 
 # initializes pyenv 
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -160,4 +165,8 @@ alias ls="ls -ACG"
 alias zshedit="tim ~/.zshrc"
 alias cleardata="rm -rf ~/Library/Developer/Xcode/DerivedData/"
 alias reload="omz reload"
-alias booturl="xcrun simctl openurl booted"
+alias booturl="xcrun simctl openurl booted"# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/mattshehan/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
