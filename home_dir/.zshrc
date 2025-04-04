@@ -166,7 +166,28 @@ alias zshedit="tim ~/.zshrc"
 alias cleardata="rm -rf ~/Library/Developer/Xcode/DerivedData/"
 alias reload="omz reload"
 alias booturl="xcrun simctl openurl booted"# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+alias b="bundle exec"
 fpath=(/Users/mattshehan/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+#compdef gt
+###-begin-gt-completions-###
+#
+# yargs command completion script
+#
+# Installation: gt completion >> ~/.zshrc
+#    or gt completion >> ~/.zprofile on OSX.
+#
+_gt_yargs_completions()
+{
+  local reply
+  local si=$IFS
+  IFS=$'
+' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" gt --get-yargs-completions "${words[@]}"))
+  IFS=$si
+  _describe 'values' reply
+}
+compdef _gt_yargs_completions gt
+###-end-gt-completions-###
+
