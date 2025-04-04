@@ -1,0 +1,3 @@
+edit_functions() {
+	tim $HOME/dotfiles/home_dir/.zsh_functions
+}
