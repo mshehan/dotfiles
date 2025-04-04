@@ -5,17 +5,22 @@ GREEN='\033[0;32m'
 RIGHT_ARROW="→"
 RESET='\033[0m'
 
-function install_brew_if_needed() {
+function install_vim_plugins {
+  git clone https://github.com/VundleVim/Vundle.vim.git $HOME/dotfiles/home_dir
+  vim +PluginInstall +qall
+}
+
+function install_brew_if_needed {
   if ! command -v brew >& /dev/null
   then 
     echo "brew not found. starting download..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   else
-    echo "brew found. skipping brewfile install"
+    echo "brew found. skipping brew install"
   fi
 }
 
-function install_oh_my_zsh_if_needed() {
+function install_oh_my_zsh_if_needed {
   if [ ! -d  $ZSH ] || [ ! -f $ZSH ]
   then 
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
@@ -24,7 +29,7 @@ function install_oh_my_zsh_if_needed() {
   fi 
 }
 
-function link_dot_file_to_main_dir() {
+function link_dot_file_to_main_dir {
   local main_dir=$HOME/${1##*/}
   local dotfile_dir=$1
 
@@ -36,7 +41,7 @@ function link_dot_file_to_main_dir() {
   fi 
 }
 
-function remove_soft_links() {
+function remove_soft_links {
   local main_dir=$HOME/${1##*/}
 
   if [ -d $main_dir ] || [ -f $main_dir ]
@@ -46,7 +51,7 @@ function remove_soft_links() {
   fi
 }
 
-function link_config_files() {
+function link_config_files {
   setopt local_options extended_glob
   
   files=( $HOME/dotfiles/home_dir/(^(DS_Store)*|.^(DS_Store)*) )
@@ -70,6 +75,7 @@ function main() {
   brew bundle install;
   install_oh_my_zsh_if_needed;
   omz reload; 
+  install_vim_plugins;
 }
 
 main;
