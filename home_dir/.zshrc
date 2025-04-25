@@ -165,8 +165,11 @@ alias ls="ls -ACG"
 alias zshedit="tim ~/.zshrc"
 alias cleardata="rm -rf ~/Library/Developer/Xcode/DerivedData/"
 alias reload="omz reload"
-alias booturl="xcrun simctl openurl booted"# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+alias booturl="xcrun simctl openurl"
 alias b="bundle exec"
+alias fl="bundle exec fastlane"
+alias fla="bundle exec fastlane actions"
+alias lint_action="npx action-validator"
 fpath=(/Users/mattshehan/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
