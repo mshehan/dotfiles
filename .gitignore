@@ -1,1 +1,4 @@
 .DS_Store
+home_dir/.config/yarn
+home_dir/.config/graphite/user_config
+home_dir/.config/tuist/credentials/tuist.dev.json
