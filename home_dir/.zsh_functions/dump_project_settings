@@ -1,0 +1,9 @@
+dump_project_settings() {
+	if [ $# -lt 2 ]
+	then
+		echo "Usage: $dump_project_settings <project.xcodeproj> <target-name>"
+	   	return
+	fi
+	
+	xcodebuild -project $1 -target $2 -showBuildSettings
+}

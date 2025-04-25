@@ -1,0 +1,6 @@
+compare_projects() {
+	project_one=~/Envoy/envoy-ios/EnvoyMobile.xcodeproj
+	project_two=~/Envoy/envoy-ios/EnvoyMobile.xcodeproj
+	xcdiff -p1 $project_one -p2 $project_two -v -d --format htmlSideBySide > proj_diff.html	
+	open proj_diff.html
+}
