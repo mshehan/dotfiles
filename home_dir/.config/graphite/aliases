@@ -9,5 +9,5 @@
 
 ls log short
 ll log long
-ss submit --stack --team-reviewers envoy/ios 
-s submit --team-reviewers envoy/ios
+ss submit --stack
+s submit
