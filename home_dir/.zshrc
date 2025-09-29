@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-
+ZSH_DISABLE_COMPFIX=true
 export CPPFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
 export LDFLAGS="-L$(xcrun --show-sdk-path)/usr/lib"
 
@@ -44,9 +44,6 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 
 eval "$(pyenv init -)"
-
-# vault setup
-
 
 #adding a function path for my zsh defined functions
 fpath=(~/dotfiles/home_dir/.zsh_functions $fpath);
@@ -96,7 +93,7 @@ ZSH_THEME="agnoster"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
@@ -170,27 +167,8 @@ alias b="bundle exec"
 alias fl="bundle exec fastlane"
 alias fla="bundle exec fastlane actions"
 alias lint_action="npx action-validator"
-fpath=(/Users/mattshehan/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
-#compdef gt
-###-begin-gt-completions-###
-#
-# yargs command completion script
-#
-# Installation: gt completion >> ~/.zshrc
-#    or gt completion >> ~/.zprofile on OSX.
-#
-_gt_yargs_completions()
-{
-  local reply
-  local si=$IFS
-  IFS=$'
-' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" gt --get-yargs-completions "${words[@]}"))
-  IFS=$si
-  _describe 'values' reply
-}
-compdef _gt_yargs_completions gt
-###-end-gt-completions-###
 
+
+eval "$(mise activate zsh)"
+
+alias claude="/Users/mattshehan/.claude/local/claude"

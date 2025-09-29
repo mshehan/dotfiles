@@ -1,0 +1,22 @@
+sim_list() {
+    xcrun simctl list devices --json | jq '
+    .devices
+    | to_entries
+    | map({
+        ( .key | sub("^com\\.apple\\.CoreSimulator\\.SimRuntime\\."; "") ):
+        ( .value | map({
+            name,
+            isAvailable,
+            udid,
+            deviceTypeIdentifier,
+            state
+          })
+        )
+      })
+    | add
+  '
+}
+
+reset_simulator_permissions() {
+  sim_list | jq -r '.. | objects | select(.state == "Booted") | .udid' | xargs -I{} xcrun simctl privacy {} reset all $1
+}

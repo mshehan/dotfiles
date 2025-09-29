@@ -1,0 +1,3 @@
+pulls() {
+    open "https://github.com/pulls"
+}

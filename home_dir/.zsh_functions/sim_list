@@ -1,3 +1,18 @@
 sim_list() {
-	 xcrun simctl list devices --j | jq '.'
+	 xcrun simctl list devices --json | jq '
+  .devices
+  | to_entries
+  | map({
+      ( .key | sub("^com\\.apple\\.CoreSimulator\\.SimRuntime\\."; "") ):
+      ( .value | map({
+          name,
+          isAvailable,
+          udid,
+          deviceTypeIdentifier,
+          state
+        })
+      )
+    })
+  | add
+'
 }

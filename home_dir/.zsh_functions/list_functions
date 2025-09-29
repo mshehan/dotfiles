@@ -1,0 +1,3 @@
+list_functions() {
+    ls ~/dotfiles/home_dir/.zsh_functions
+}
