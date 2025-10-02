@@ -4,7 +4,6 @@ build/
 .build/
 Pods/
 .DS_Store
-*.mobileprovision
 *.zip
 *.ipa
 fastlane/report.xml
@@ -15,6 +14,7 @@ Localizations/
 **/Envoy/Generated/Secrets.swift
 bundle/**
 vendor/**
+**/buildServer.json
 
 ## Ruby
 .bundle
@@ -54,3 +54,7 @@ fastlane/firebase_service_account_key.json
 
 # Claude
 **/CLAUDE.md
+**/.claude
+
+# Serena
+**/.serena
