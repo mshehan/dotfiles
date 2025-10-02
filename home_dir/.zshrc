@@ -31,7 +31,7 @@ export PATH="$PATH:$HOME/.local/bin/"
 #initialize rbenv
 eval "$(rbenv init - --no-rehash zsh)"
 
-# initializes pyenv 
+# initializes pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
@@ -55,7 +55,7 @@ setopt globdots
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/dotfiles/home_dir/oh-my-zsh"
 
-#path to brewfile 
+#path to brewfile
 export HOMEBREW_BUNDLE_FILE=$HOME/dotfiles/CONFIG_FILES/Brewfile
 
 # Set name of the theme to load --- if set to "random", it will
@@ -159,14 +159,14 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="ls -ACG"
-alias zshedit="vs ~/.zshrc"
+alias zshedit="cursor ~/.zshrc"
 alias reload="omz reload"
 alias cleardata="rm -rf ~/Library/Developer/Xcode/DerivedData/"
 alias booturl="xcrun simctl openurl"
 alias b="bundle exec"
 alias fl="bundle exec fastlane"
 alias fla="bundle exec fastlane actions"
-alias lint_action="npx action-validator"
+alias rs="uvx --from git+https://github.com/oraios/serena serena"
 
 
 eval "$(mise activate zsh)"
