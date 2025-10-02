@@ -21,21 +21,21 @@
     r = !git ls-files -z --deleted | xargs -0 git rm
     root = rev-parse --show-toplevel
     s = status
-    ss = status --short 
+    ss = status --short
     subup = submodule update --init
     tags = tag -l
     this = !git init && git add . && git commit -m \"Initial commit.\"
     trim = !git reflog expire --expire=now --all && git gc --prune=now
     fa = fetch --all
-    f = fetch 
+    f = fetch
     fpush = push --force-with-lease
     cleanup = !git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 -r git branch -d
     recent = !git branch --sort=-committerdate | head -5
-    wa = worktree add 
+    wa = worktree add
     wr = worktree remove
     wls = worktree list
     wprune = worktree prune
-    
+
 [color]
     ui = true
 
@@ -60,7 +60,7 @@
     compression = 9
 	excludesfile = /Users/mattshehan/.gitignore
     filemode = false
-	editor = code --wait
+	editor = cursor --wait
 
 [diff]
     mnemonicprefix = true
