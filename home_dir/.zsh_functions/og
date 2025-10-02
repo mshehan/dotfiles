@@ -1,3 +1,22 @@
 og() {
-  git remote -v | head -n 1 | awk -F "@" '{print $2}' | awk -F " " '{print $1}' | sed 's/:/\//g' | sed 's/.git//g' | awk '{print "https://"$1"/pulls"}' | xargs open
+  https_git_url=$(git remote -v | head -n 1 | awk -F "@" '{print $1}' | awk -F " " '{print $2}') 
+  
+  ssh_git_url=$(git remote -v | head -n 1 | awk -F "@" '{print $2}' | awk -F " " '{print $1}')
+
+  git_url=""
+
+  if [ "$https_git_url" = "git" ]; then
+    git_url=$(echo $ssh_git_url | sed 's/:/\//g' | sed 's/.git//g' | awk '{print "https://"$1"/pulls"}')
+  else 
+    git_url=$(echo $https_git_url | sed 's/\.git//g' | awk '{print $1"/pulls"}')
+  fi 
+
+  if [ "$git_url" = "" ]; then
+    echo "failed to find git repository"
+  else 
+    echo "opening url: $git_url"
+  fi 
+  open $git_url
 }
+
+
